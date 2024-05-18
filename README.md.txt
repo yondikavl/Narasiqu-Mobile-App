@@ -1,1 +1,0 @@
-# Narasiqu Mobile App
