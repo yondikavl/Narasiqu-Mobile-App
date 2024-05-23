@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
         android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LoginWithAnimation">
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.StoryApp"
+        tools:targetApi="s">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDbTPzBsaS5XjGV9ms06agOwaue6Afvr1Q" />
+
         <activity
-            android:name="com.yondikavl.narasiqu.view.welcome.WelcomeActivity"
+            android:name=".MapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".DetailStoryActivity"
             android:exported="false" />
         <activity
-            android:name="com.yondikavl.narasiqu.view.signup.SignupActivity"
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name="com.yondikavl.narasiqu.view.login.LoginActivity"
+            android:name=".AddStoryActivity"
             android:exported="false" />
         <activity
-            android:name="com.yondikavl.narasiqu.view.main.MainActivity"
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

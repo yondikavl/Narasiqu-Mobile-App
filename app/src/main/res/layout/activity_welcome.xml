@@ -6,25 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.yondikavl.narasiqu.view.welcome.WelcomeActivity">
+    tools:context=".WelcomeActivity">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image_welcome" />
-
-    <TextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/imgWelcome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_margin="24dp"
+        android:layout_marginBottom="389dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineVertical"
+        app:srcCompat="@drawable/il_welcome" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="24dp"
+        android:alpha="0"
+        android:fontFamily="@font/pjs_bold"
         android:text="@string/title_welcome_page"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -32,50 +37,67 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal"
+        tools:alpha="100" />
 
     <TextView
-        android:id="@+id/descTextView"
+        android:id="@+id/tvDesc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="24dp"
+        android:alpha="0"
+        android:fontFamily="@font/pjs"
+        android:justificationMode="inter_word"
         android:text="@string/message_welcome_page"
         android:textColor="@color/navy"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        tools:alpha="100" />
 
-    <Button
-        android:id="@+id/loginButton"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLogin"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/navy"
+        android:layout_marginEnd="12dp"
+        android:alpha="0"
+        android:background="@drawable/rounded_background"
+        android:fontFamily="@font/pjs_bold"
         android:text="@string/login"
+        android:textAllCaps="false"
         android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDesc"
+        tools:alpha="100" />
 
-    <Button
-        android:id="@+id/signupButton"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnRegister"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/navy"
+        android:layout_marginEnd="24dp"
+        android:alpha="0"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="@color/narasiqu_primary"
+        android:fontFamily="@font/pjs_bold"
         android:text="@string/signup"
+        android:textAllCaps="false"
         android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelineVertical"
-        app:layout_constraintTop_toBottomOf="@+id/descTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDesc"
+        tools:alpha="100" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal"
@@ -89,10 +111,13 @@
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical"
         android:layout_width="wrap_content"
-        android:layout_height="64dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/imgWelcome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintGuide_percent="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

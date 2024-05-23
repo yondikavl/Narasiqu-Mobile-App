@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <color name="black">#FF000000</color>
+    <color name="black">#292D32</color>
     <color name="white">#FFFFFFFF</color>
-
+    <color name="bone">#F2F5F3</color>
+    <color name="gray">#98A7B0</color>
     <color name="navy">#2D3D4F</color>
-
+    <color name="narasiqu_primary">#002774</color>
+    <color name="narasiqu_secondary">#F55F1F</color>
 </resources>
