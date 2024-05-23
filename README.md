@@ -1,18 +1,6 @@
-<<<<<<< HEAD
- <!-- PROJECT LOGO -->
-<br />
-<p align="center">
-  <h1 align="center">Narasiqu</h1>
-
-  <p align="center">
-    Narasiqu is your gateway to sharing experiences and connecting through stories
-    <br />
-    <a href="" target="_blank">APK Demo</a>
-  </p>
+# Narasiqu Mobile App (Android)
 
 ## About The Project
-
-### Submission 1 Narasiqu
 
 <div align="center">
   <img src="./Narasiqu Preview.png" alt="Narasiqu" width="auto" height="auto"  style="border-radius:50%">    
@@ -25,13 +13,12 @@ Narasiqu is an Android application designed to help you share your stories with 
 - [ ] Upload Your Story
 - [ ] Login & Register
 - [ ] Explore Other Stories
+- [ ] Location Sharing
 
 ## Technologies Used
 
 - Kotlin: The primary programming language
+- Google Maps API: Display and Interact with location data
 - Paging3: Implemented for pagination when showing lists of data, to efficiently load and display large datasets
 - Room: Utilized as a local database to store data,
 - Retrofit: Used for making network requests and handling API interactions
-=======
-# Narasiqu Mobile App (Android)
->>>>>>> 6807e16fe805dd3049f5d9fdd1938a938f54f7f3
