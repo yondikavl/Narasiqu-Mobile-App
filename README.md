@@ -13,7 +13,7 @@ Narasiqu is an Android application designed to help you share your stories with 
 - [ ] Upload Your Story
 - [ ] Login & Register
 - [ ] Explore Other Stories
-- [ ] Location Sharing
+- [ ] Find Locations
 
 ## Technologies Used
 
