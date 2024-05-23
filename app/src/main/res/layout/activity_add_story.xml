@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pjs_bold"
-                android:paddingVertical="20dp"
+                android:paddingVertical="18dp"
                 android:text="Buat Cerita"
                 android:textColor="@color/black"
                 android:textSize="20sp"
