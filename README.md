@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -31,3 +32,6 @@ Narasiqu is an Android application designed to help you share your stories with 
 - Paging3: Implemented for pagination when showing lists of data, to efficiently load and display large datasets
 - Room: Utilized as a local database to store data,
 - Retrofit: Used for making network requests and handling API interactions
+=======
+# Narasiqu Mobile App (Android)
+>>>>>>> 6807e16fe805dd3049f5d9fdd1938a938f54f7f3
