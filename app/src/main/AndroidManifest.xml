@@ -19,12 +19,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.StoryApp"
+        android:theme="@style/Theme.Narasiqu"
         tools:targetApi="s">
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDbTPzBsaS5XjGV9ms06agOwaue6Afvr1Q" />
+            android:value="AIzaSyDDaoclzb4XpA5hfSq80JTOOnW8M5oqzos" />
 
         <activity
             android:name=".MapsActivity"

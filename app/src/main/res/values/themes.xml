@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.StoryApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Narasiqu" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!--Animation Shared Element-->
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowEnterTransition">@android:transition/explode</item>
