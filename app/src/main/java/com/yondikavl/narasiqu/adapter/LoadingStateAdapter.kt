@@ -11,31 +11,31 @@ import com.yondikavl.narasiqu.databinding.ItemLoadingBinding
 class LoadingStateAdapter(private val retry: () -> Unit) : LoadStateAdapter<LoadingStateAdapter.LoadingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): LoadingViewHolder {
-        val bind = ItemLoadingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return LoadingViewHolder(bind, retry)
+        val binding = ItemLoadingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return LoadingViewHolder(binding, retry)
     }
 
     override fun onBindViewHolder(holder: LoadingViewHolder, loadState: LoadState) {
-        holder.binding(loadState)
+        holder.bind(loadState)
     }
 
-    class LoadingViewHolder(private val bind: ItemLoadingBinding, retry: () -> Unit):
-        RecyclerView.ViewHolder(bind.root) {
+    class LoadingViewHolder(private val binding: ItemLoadingBinding, retry: () -> Unit) :
+        RecyclerView.ViewHolder(binding.root) {
+
         init {
-            bind.retryButton.setOnClickListener { retry.invoke() }
+            binding.retryButton.setOnClickListener { retry.invoke() }
         }
 
-        fun binding(loadState: LoadState) {
-            if (loadState is LoadState.Error){
-                bind.errorMsg.text = loadState.error.localizedMessage
+        fun bind(loadState: LoadState) {
+            binding.apply {
+                progressBar.isVisible = loadState is LoadState.Loading
+                retryButton.isVisible = loadState is LoadState.Error
+                errorMsg.isVisible = loadState is LoadState.Error
+
+                if (loadState is LoadState.Error) {
+                    errorMsg.text = loadState.error.localizedMessage
+                }
             }
-            bind.progressBar.isVisible = loadState is LoadState.Loading
-            bind.retryButton.isVisible = loadState is LoadState.Error
-            bind.errorMsg.isVisible = loadState is LoadState.Error
         }
     }
-
-
-
-
 }

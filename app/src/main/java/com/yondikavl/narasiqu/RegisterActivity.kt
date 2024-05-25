@@ -69,7 +69,7 @@ class RegisterActivity : AppCompatActivity() {
                         responseBody == null -> {
                             hideOrshowLoading(View.GONE)
                             disableBtn()
-                            pesanError("Data Kosong...")
+                            pesanError("Data masih kosong...")
                         }
                         responseBody.error == true -> {
                             hideOrshowLoading(View.GONE)

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    tools:ignore="MissingClass">
 
     <ImageView
         android:id="@+id/imgLoginLogo"
@@ -131,23 +132,22 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <app.juky.squircleview.views.SquircleButton
         android:id="@+id/btnLogin"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="24dp"
-        android:alpha="0"
-        android:background="@drawable/rounded_background"
-        android:fontFamily="@font/pjs_bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="22dp"
+        android:padding="16dp"
         android:text="@string/login"
         android:textAllCaps="false"
+        android:textSize="3pt"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:fontFamily="@font/pjs_bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputPassword"
-        tools:alpha="100" />
+        app:layout_constraintTop_toBottomOf="@id/txtInputPassword"
+        app:squircle_background_color="@color/narasiqu_primary"
+        app:squircle_shadow_elevation="2dp" />
 
     <ProgressBar
         android:id="@+id/pbLoading"

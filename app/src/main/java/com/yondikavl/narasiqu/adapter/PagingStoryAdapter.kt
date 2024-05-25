@@ -15,27 +15,30 @@ import com.squareup.picasso.Picasso
 
 class PagingStoryAdapter : PagingDataAdapter<ListStoryItem, PagingStoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-    class MyViewHolder(val bind: ListLayoutBinding) : RecyclerView.ViewHolder(bind.root)
+    class MyViewHolder(val binding: ListLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val story = getItem(position)!!
-        holder.bind.apply {
-            judulStory.text = story.name
-            judulStory.text = story.name
-            textStory.text = story.description
-            Picasso.get().load(story.photoUrl).fit().into(storyPoto)
-        }
+        val story = getItem(position)
+        story?.let {
+            holder.binding.apply {
+                judulStory.text = it.name
+                textStory.text = it.description
+                Picasso.get().load(it.photoUrl).fit().into(storyPoto)
 
-        holder.itemView.setOnClickListener {
-            val i = Intent(it.context, DetailStoryActivity::class.java)
-            i.putExtra("id", story.id)
-            it.context.startActivity(i, ActivityOptionsCompat.makeSceneTransitionAnimation(it.context as Activity).toBundle())
+                root.setOnClickListener { view ->
+                    val intent = Intent(view.context, DetailStoryActivity::class.java).apply {
+                        putExtra("id", it.id)
+                    }
+                    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(view.context as Activity)
+                    view.context.startActivity(intent, options.toBundle())
+                }
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val bind = ListLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(bind)
+        val binding = ListLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
     companion object {
@@ -49,5 +52,4 @@ class PagingStoryAdapter : PagingDataAdapter<ListStoryItem, PagingStoryAdapter.M
             }
         }
     }
-
 }

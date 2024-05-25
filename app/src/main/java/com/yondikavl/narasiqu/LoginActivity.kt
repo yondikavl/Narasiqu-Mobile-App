@@ -82,9 +82,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun notifFailed() {
         AlertDialog.Builder(this).apply {
-            setTitle("Failed")
-            setMessage("Anda Gagal Login....")
-            setPositiveButton("OK") { dialog, _ ->
+            setTitle("Gagal")
+            setMessage("Kamu gagal login:(")
+            setPositiveButton("Kembali") { dialog, _ ->
                 dialog.dismiss()
             }
             create()
@@ -94,9 +94,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun notifSuccess() {
         AlertDialog.Builder(this).apply {
-            setTitle("Yeah")
-            setMessage("Anda Berhasil Login....")
-            setPositiveButton("lanjut") { _, _ ->
+            setTitle("Berhasil")
+            setMessage("Kamu berhasil login:)")
+            setPositiveButton("Lanjut") { _, _ ->
                 val i = Intent(context, MainActivity::class.java)
                 i.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(i)

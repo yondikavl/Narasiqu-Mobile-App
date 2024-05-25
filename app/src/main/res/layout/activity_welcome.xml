@@ -59,45 +59,44 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         tools:alpha="100" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <app.juky.squircleview.views.SquircleButton
         android:id="@+id/btnLogin"
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
         android:layout_marginEnd="12dp"
-        android:alpha="0"
-        android:background="@drawable/rounded_background"
-        android:fontFamily="@font/pjs_bold"
+        android:layout_marginTop="32dp"
+        android:padding="16dp"
         android:text="@string/login"
         android:textAllCaps="false"
+        android:textSize="3pt"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
+        android:fontFamily="@font/pjs_bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
         app:layout_constraintTop_toBottomOf="@+id/tvDesc"
-        tools:alpha="100" />
+        app:squircle_background_color="@color/narasiqu_primary"
+        app:squircle_shadow_elevation="2dp" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <app.juky.squircleview.views.SquircleButton
         android:id="@+id/btnRegister"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:layout_marginEnd="22dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:alpha="0"
-        android:background="@drawable/rounded_background"
-        android:backgroundTint="@color/narasiqu_primary"
-        android:fontFamily="@font/pjs_bold"
+        android:padding="16dp"
         android:text="@string/signup"
         android:textAllCaps="false"
+        android:textSize="3pt"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:fontFamily="@font/pjs_bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guidelineVertical"
+        app:layout_constraintStart_toStartOf="@id/guidelineVertical"
         app:layout_constraintTop_toBottomOf="@+id/tvDesc"
-        tools:alpha="100" />
+        app:squircle_background_color="@color/narasiqu_primary"
+        app:squircle_shadow_elevation="2dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal"
