@@ -1,4 +1,4 @@
-package com.yondikavl.narasiqu.models
+package com.yondikavl.narasiqu.data.model
 
 data class UserModel (
     val name: String,

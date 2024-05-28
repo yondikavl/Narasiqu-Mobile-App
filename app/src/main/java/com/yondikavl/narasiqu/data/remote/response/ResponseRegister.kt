@@ -1,8 +1,9 @@
-package com.yondikavl.narasiqu.models
+package com.yondikavl.narasiqu.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class ResponseUploadStory(
+
+data class ResponseRegister(
 
 	@field:SerializedName("error")
 	val error: Boolean? = null,

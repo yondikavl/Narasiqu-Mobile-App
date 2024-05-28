@@ -1,16 +1,16 @@
-package com.yondikavl.narasiqu.models
+package com.yondikavl.narasiqu.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
 data class ResponseLogin(
 
-	@field:SerializedName("loginResult")
+    @field:SerializedName("loginResult")
 	val loginResult: LoginResult? = null,
 
-	@field:SerializedName("error")
+    @field:SerializedName("error")
 	val error: Boolean? = null,
 
-	@field:SerializedName("message")
+    @field:SerializedName("message")
 	val message: String? = null
 )
 

@@ -1,4 +1,4 @@
-package com.yondikavl.narasiqu
+package com.yondikavl.narasiqu.ui
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -8,12 +8,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.yondikavl.narasiqu.api.BaseApi
-import com.yondikavl.narasiqu.data.UserPreference
-import com.yondikavl.narasiqu.data.dataStore
+import com.yondikavl.narasiqu.network.BaseApi
+import com.yondikavl.narasiqu.data.local.UserPreference
+import com.yondikavl.narasiqu.data.local.dataStore
 import com.yondikavl.narasiqu.databinding.ActivityRegisterBinding
-import com.yondikavl.narasiqu.models.RequestRegister
-import com.yondikavl.narasiqu.models.ResponseRegister
+import com.yondikavl.narasiqu.data.remote.request.RequestRegister
+import com.yondikavl.narasiqu.data.remote.response.ResponseRegister
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

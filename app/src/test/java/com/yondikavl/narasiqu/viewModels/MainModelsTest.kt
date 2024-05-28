@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.ListUpdateCallback
 import com.yondikavl.narasiqu.DataDummy
 import com.yondikavl.narasiqu.MainDispatcherRule
 import com.yondikavl.narasiqu.adapter.PagingStoryAdapter
-import com.yondikavl.narasiqu.data.StoryRepository
+import com.yondikavl.narasiqu.data.repository.StoryRepository
 import com.yondikavl.narasiqu.getOrAwaitValue
-import com.yondikavl.narasiqu.models.ListStoryItem
+import com.yondikavl.narasiqu.data.remote.response.ListStoryItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

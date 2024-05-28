@@ -3,8 +3,8 @@ package com.yondikavl.narasiqu.viewModels
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.yondikavl.narasiqu.data.Injection
-import com.yondikavl.narasiqu.data.StoryRepository
+import com.yondikavl.narasiqu.network.Injection
+import com.yondikavl.narasiqu.data.repository.StoryRepository
 
 class ViewModelsFactory(private val repo: StoryRepository): ViewModelProvider.NewInstanceFactory() {
 

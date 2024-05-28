@@ -1,4 +1,4 @@
-package com.yondikavl.narasiqu.custom
+package com.yondikavl.narasiqu.ui.custom
 
 import android.content.Context
 import android.util.AttributeSet

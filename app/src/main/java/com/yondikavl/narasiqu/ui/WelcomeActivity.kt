@@ -1,4 +1,4 @@
-package com.yondikavl.narasiqu
+package com.yondikavl.narasiqu.ui
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator

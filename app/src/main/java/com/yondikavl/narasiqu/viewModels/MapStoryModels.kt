@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.asLiveData
-import com.yondikavl.narasiqu.data.StoryRepository
-import com.yondikavl.narasiqu.models.ListStoryItem
+import com.yondikavl.narasiqu.data.repository.StoryRepository
+import com.yondikavl.narasiqu.data.remote.response.ListStoryItem
 
 class MapStoryModels(private val repo: StoryRepository): ViewModel() {
     fun getStory(): LiveData<List<ListStoryItem>> {

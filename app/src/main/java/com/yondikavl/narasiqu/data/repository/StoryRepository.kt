@@ -1,4 +1,4 @@
-package com.yondikavl.narasiqu.data
+package com.yondikavl.narasiqu.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,15 +6,17 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
-import com.yondikavl.narasiqu.api.urlData
-import com.yondikavl.narasiqu.models.ListStoryItem
-import com.yondikavl.narasiqu.models.RequestLogin
-import com.yondikavl.narasiqu.models.ResponseDetailStory
-import com.yondikavl.narasiqu.models.ResponseListStory
-import com.yondikavl.narasiqu.models.ResponseLogin
-import com.yondikavl.narasiqu.models.ResponseUploadStory
-import com.yondikavl.narasiqu.models.Story
-import com.yondikavl.narasiqu.models.UserModel
+import com.yondikavl.narasiqu.network.urlData
+import com.yondikavl.narasiqu.util.PagingStory
+import com.yondikavl.narasiqu.data.local.UserPreference
+import com.yondikavl.narasiqu.data.remote.response.ListStoryItem
+import com.yondikavl.narasiqu.data.remote.request.RequestLogin
+import com.yondikavl.narasiqu.data.remote.response.ResponseDetailStory
+import com.yondikavl.narasiqu.data.remote.response.ResponseListStory
+import com.yondikavl.narasiqu.data.remote.response.ResponseLogin
+import com.yondikavl.narasiqu.data.remote.response.ResponseUploadStory
+import com.yondikavl.narasiqu.data.remote.response.Story
+import com.yondikavl.narasiqu.data.model.UserModel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow

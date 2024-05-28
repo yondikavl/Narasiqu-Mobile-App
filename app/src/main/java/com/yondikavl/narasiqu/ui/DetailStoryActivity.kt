@@ -1,4 +1,4 @@
-package com.yondikavl.narasiqu
+package com.yondikavl.narasiqu.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.yondikavl.narasiqu.databinding.ActivityDetailStoryBinding
-import com.yondikavl.narasiqu.models.Story
+import com.yondikavl.narasiqu.data.remote.response.Story
 import com.yondikavl.narasiqu.viewModels.DetailStoryModels
 import com.yondikavl.narasiqu.viewModels.ViewModelsFactory
 import com.squareup.picasso.Picasso

@@ -1,7 +1,9 @@
-package com.yondikavl.narasiqu.data
+package com.yondikavl.narasiqu.network
 
 import android.content.Context
-import com.yondikavl.narasiqu.api.BaseApi
+import com.yondikavl.narasiqu.data.local.UserPreference
+import com.yondikavl.narasiqu.data.local.dataStore
+import com.yondikavl.narasiqu.data.repository.StoryRepository
 
 object Injection {
     fun provideRepo(context: Context): StoryRepository {

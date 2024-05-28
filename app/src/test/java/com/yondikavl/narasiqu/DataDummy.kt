@@ -1,6 +1,6 @@
 package com.yondikavl.narasiqu
 
-import com.yondikavl.narasiqu.models.ListStoryItem
+import com.yondikavl.narasiqu.data.remote.response.ListStoryItem
 
 object DataDummy {
     fun generateDummyStoryResponse(): List<ListStoryItem> {

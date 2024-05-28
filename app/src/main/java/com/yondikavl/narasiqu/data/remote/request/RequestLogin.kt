@@ -1,4 +1,4 @@
-package com.yondikavl.narasiqu.models
+package com.yondikavl.narasiqu.data.remote.request
 
 import com.google.gson.annotations.SerializedName
 

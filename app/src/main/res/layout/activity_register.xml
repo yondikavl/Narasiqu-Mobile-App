@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".RegisterActivity">
+    tools:context=".ui.RegisterActivity">
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -160,7 +160,7 @@
         app:startIconTint="@color/black"
         tools:alpha="100">
 
-        <com.yondikavl.narasiqu.custom.MyEditText
+        <com.yondikavl.narasiqu.ui.custom.MyEditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

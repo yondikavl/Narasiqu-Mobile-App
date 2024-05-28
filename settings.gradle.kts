@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Story App"
+rootProject.name = "Narasiqu"
 include(":app")
  

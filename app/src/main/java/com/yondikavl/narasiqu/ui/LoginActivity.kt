@@ -1,4 +1,4 @@
-package com.yondikavl.narasiqu
+package com.yondikavl.narasiqu.ui
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.yondikavl.narasiqu.databinding.ActivityLoginBinding
-import com.yondikavl.narasiqu.models.RequestLogin
+import com.yondikavl.narasiqu.data.remote.request.RequestLogin
 import com.yondikavl.narasiqu.viewModels.LoginViewModels
 import com.yondikavl.narasiqu.viewModels.ViewModelsFactory
 import kotlinx.coroutines.launch

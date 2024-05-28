@@ -1,9 +1,9 @@
-package com.yondikavl.narasiqu.data
+package com.yondikavl.narasiqu.util
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.yondikavl.narasiqu.api.urlData
-import com.yondikavl.narasiqu.models.ListStoryItem
+import com.yondikavl.narasiqu.network.urlData
+import com.yondikavl.narasiqu.data.remote.response.ListStoryItem
 import okio.IOException
 import retrofit2.HttpException
 

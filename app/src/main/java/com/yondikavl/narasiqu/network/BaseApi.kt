@@ -1,13 +1,13 @@
-package com.yondikavl.narasiqu.api
+package com.yondikavl.narasiqu.network
 
-import com.yondikavl.narasiqu.data.UserPreference
-import com.yondikavl.narasiqu.models.RequestLogin
-import com.yondikavl.narasiqu.models.RequestRegister
-import com.yondikavl.narasiqu.models.ResponseDetailStory
-import com.yondikavl.narasiqu.models.ResponseListStory
-import com.yondikavl.narasiqu.models.ResponseLogin
-import com.yondikavl.narasiqu.models.ResponseRegister
-import com.yondikavl.narasiqu.models.ResponseUploadStory
+import com.yondikavl.narasiqu.data.local.UserPreference
+import com.yondikavl.narasiqu.data.remote.request.RequestLogin
+import com.yondikavl.narasiqu.data.remote.request.RequestRegister
+import com.yondikavl.narasiqu.data.remote.response.ResponseDetailStory
+import com.yondikavl.narasiqu.data.remote.response.ResponseListStory
+import com.yondikavl.narasiqu.data.remote.response.ResponseLogin
+import com.yondikavl.narasiqu.data.remote.response.ResponseRegister
+import com.yondikavl.narasiqu.data.remote.response.ResponseUploadStory
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor

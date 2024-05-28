@@ -1,6 +1,5 @@
-package com.yondikavl.narasiqu
+package com.yondikavl.narasiqu.ui
 
-import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.os.Bundle
@@ -21,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
+import com.yondikavl.narasiqu.R
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val mapStoryModel by viewModels<MapStoryModels> {

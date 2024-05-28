@@ -8,9 +8,9 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.yondikavl.narasiqu.DetailStoryActivity
+import com.yondikavl.narasiqu.ui.DetailStoryActivity
 import com.yondikavl.narasiqu.databinding.ListLayoutBinding
-import com.yondikavl.narasiqu.models.ListStoryItem
+import com.yondikavl.narasiqu.data.remote.response.ListStoryItem
 import com.squareup.picasso.Picasso
 
 class PagingStoryAdapter : PagingDataAdapter<ListStoryItem, PagingStoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
