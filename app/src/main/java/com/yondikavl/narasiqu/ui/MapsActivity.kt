@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.yondikavl.narasiqu.databinding.ActivityMapsBinding
-import com.yondikavl.narasiqu.viewModels.MapStoryModels
+import com.yondikavl.narasiqu.viewModels.MapStoryViewModels
 import com.yondikavl.narasiqu.viewModels.ViewModelsFactory
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -23,7 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.yondikavl.narasiqu.R
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
-    private val mapStoryModel by viewModels<MapStoryModels> {
+    private val mapStoryModel by viewModels<MapStoryViewModels> {
         ViewModelsFactory.getInstance(this)
     }
     private lateinit var mMap: GoogleMap
@@ -49,10 +49,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isCompassEnabled = true
         mMap.uiSettings.isMapToolbarEnabled = true
 
-        val lampung = LatLng(-5.562261, 105.547437)
+        val lampung = LatLng(-5.22401545029585, 105.17650969257991)
         mMap.addMarker(MarkerOptions().position(lampung).title("Marker in Lampung").snippet("Lampung Selatan"))
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lampung, 15f))
-//        callMapFromApi(mMap)
+
 
         mMap.setOnPoiClickListener { pointOfInterest ->
             val poiMarker = mMap.addMarker(
@@ -66,6 +66,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         getMyLocation()
         setMapStyle()
+
+        callMapFromApi(mMap)
     }
 
     private val requestPermissionLauncher = registerForActivityResult(
@@ -100,18 +102,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    private fun callMapFromApi(mMap: GoogleMap) {
+        mapStoryModel.getStory().observe(this){
+            it.forEach { place ->
+                val latLng = LatLng(place.lat!!, place.lon!!)
+                mMap.addMarker(MarkerOptions().position(latLng).title(place.name))
+                boundsBuilder.include(latLng)
+            }
+        }
+    }
+
     companion object {
         private const val TAG = "MapsActivity"
     }
-
-//    private fun callMapFromApi(mMap: GoogleMap) {
-//        mapStoryModel.getStory().observe(this){
-//            it.forEach { place ->
-//                val latLng = LatLng(place.lat!!, place.lon!!)
-//                mMap.addMarker(MarkerOptions().position(latLng).title(place.name))
-//                boundsBuilder.include(latLng)
-//                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
-//            }
-//        }
-//    }
 }

@@ -11,12 +11,12 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.viewModels
 import com.yondikavl.narasiqu.databinding.ActivityWelcomeBinding
-import com.yondikavl.narasiqu.viewModels.MainModels
+import com.yondikavl.narasiqu.viewModels.MainViewModels
 import com.yondikavl.narasiqu.viewModels.ViewModelsFactory
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var bind: ActivityWelcomeBinding
-    private val listStoryViewModel by viewModels<MainModels> {
+    private val listStoryViewModel by viewModels<MainViewModels> {
         ViewModelsFactory.getInstance(this)
     }
     override fun onStart() {
@@ -34,7 +34,7 @@ class WelcomeActivity : AppCompatActivity() {
         bind = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(bind.root)
 
-        fullscreenApp()
+        fullScreenApp()
         buttonIntent()
         animation()
     }
@@ -70,7 +70,7 @@ class WelcomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun fullscreenApp() {
+    private fun fullScreenApp() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())

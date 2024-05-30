@@ -10,11 +10,11 @@ import com.yondikavl.narasiqu.network.urlData
 import com.yondikavl.narasiqu.util.PagingStory
 import com.yondikavl.narasiqu.data.local.UserPreference
 import com.yondikavl.narasiqu.data.remote.response.ListStoryItem
-import com.yondikavl.narasiqu.data.remote.request.RequestLogin
+import com.yondikavl.narasiqu.data.remote.request.LoginRequest
 import com.yondikavl.narasiqu.data.remote.response.ResponseDetailStory
 import com.yondikavl.narasiqu.data.remote.response.ResponseListStory
 import com.yondikavl.narasiqu.data.remote.response.ResponseLogin
-import com.yondikavl.narasiqu.data.remote.response.ResponseUploadStory
+import com.yondikavl.narasiqu.data.remote.response.UploadStoryResponse
 import com.yondikavl.narasiqu.data.remote.response.Story
 import com.yondikavl.narasiqu.data.model.UserModel
 import kotlinx.coroutines.channels.awaitClose
@@ -43,7 +43,7 @@ class StoryRepository private constructor (
         userPreference.logout()
     }
 
-    suspend fun postLogin(reqLogin: RequestLogin): LiveData<ResponseLogin> {
+    suspend fun postLogin(reqLogin: LoginRequest): LiveData<ResponseLogin> {
         val data = MutableLiveData<ResponseLogin>()
         try {
             val response = apiService.postLogin(reqLogin)
@@ -112,8 +112,8 @@ class StoryRepository private constructor (
         return data
     }
 
-    suspend fun postStory(desc: RequestBody, poto: MultipartBody.Part): LiveData<ResponseUploadStory> {
-        val data = MutableLiveData<ResponseUploadStory>()
+    suspend fun postStory(desc: RequestBody, poto: MultipartBody.Part): LiveData<UploadStoryResponse> {
+        val data = MutableLiveData<UploadStoryResponse>()
 
         try {
             val response = apiService.postStory(desc, poto)

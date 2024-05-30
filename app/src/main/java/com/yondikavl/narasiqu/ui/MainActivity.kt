@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.yondikavl.narasiqu.adapter.LoadingStateAdapter
 import com.yondikavl.narasiqu.adapter.PagingStoryAdapter
 import com.yondikavl.narasiqu.databinding.ActivityMainBinding
-import com.yondikavl.narasiqu.viewModels.MainModels
+import com.yondikavl.narasiqu.viewModels.MainViewModels
 import com.yondikavl.narasiqu.viewModels.ViewModelsFactory
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    private val listStoryViewModel by viewModels<MainModels> {
+    private val listStoryViewModel by viewModels<MainViewModels> {
         ViewModelsFactory.getInstance(this)
     }
 

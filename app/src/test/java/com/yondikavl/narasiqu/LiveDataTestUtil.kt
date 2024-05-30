@@ -28,9 +28,8 @@ import java.util.concurrent.TimeoutException
         try {
             afterObserve.invoke()
 
-            // Don't wait indefinitely if the LiveData is not set.
             if (!latch.await(time, timeUnit)) {
-                throw TimeoutException("LiveData value was never set.")
+                throw TimeoutException("Nilai LiveData belum diatur.")
             }
 
         } finally {

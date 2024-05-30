@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -14,10 +15,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.yondikavl.narasiqu.databinding.ActivityAddStoryBinding
-import com.yondikavl.narasiqu.viewModels.AddStoryModels
+import com.yondikavl.narasiqu.viewModels.AddStoryViewModels
 import com.yondikavl.narasiqu.viewModels.ViewModelsFactory
 import com.squareup.picasso.Picasso
-import id.zelory.compressor.Compressor
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -31,7 +31,7 @@ import java.util.Locale
 
 class AddStoryActivity : AppCompatActivity() {
 
-    private val addStoryModel by viewModels<AddStoryModels> {
+    private val addStoryModel by viewModels<AddStoryViewModels> {
         ViewModelsFactory.getInstance(this)
     }
     private lateinit var bind: ActivityAddStoryBinding
@@ -51,7 +51,6 @@ class AddStoryActivity : AppCompatActivity() {
         }
     }
 
-
     private fun cameraOrGallery() {
         bind.btnGallery.setOnClickListener {
             val i = PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
@@ -70,8 +69,13 @@ class AddStoryActivity : AppCompatActivity() {
         if (it != null) {
             Picasso.get().load(it).fit().into(bind.ivPreview)
             val path = getPathFromUri(this, it)
-            file = File(path!!)
-            handleContent(file!!)
+            if (path != null) {
+                file = File(path)
+                handleContent(file!!)
+            } else {
+                errorMessage("Gagal mendapatkan jalur file")
+                Log.e("AddStoryActivity", "Gagal mendapatkan jalur file dari URI: $it")
+            }
         }
     }
 
@@ -83,15 +87,25 @@ class AddStoryActivity : AppCompatActivity() {
                 println("Image Uri = $it")
                 Picasso.get().load(it).fit().into(bind.ivPreview)
                 val path = getPathFromUri(this, it)
-                file = File(path!!)
-                handleContent(file!!)
+                if (path != null) {
+                    file = File(path)
+                    handleContent(file!!)
+                } else {
+                    errorMessage("Gagal mendapatkan jalur file")
+                    Log.e("AddStoryActivity", "Gagal mendapatkan jalur file dari URI: $it")
+                }
             }
         }
     }
 
     private fun handleContent(file: File) {
-        val compressFile = Compressor(this).compressToFile(file)
-        uploadContent(compressFile)
+        try {
+            val compressFile = id.zelory.compressor.Compressor(this).compressToFile(file)
+            uploadContent(compressFile)
+        } catch (e: Exception) {
+            errorMessage("Gagal mengompres file: ${e.message}")
+            Log.e("AddStoryActivity", "Gagal mengompres file", e)
+        }
     }
 
     private fun getPathFromUri(context: Context, it: Uri): String? {
@@ -99,31 +113,28 @@ class AddStoryActivity : AppCompatActivity() {
         val projection = arrayOf(MediaStore.Images.Media.DATA)
         val cursor = context.contentResolver.query(it, projection, null, null, null)
         cursor?.use {
-            val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-            it.moveToFirst()
-            realPath = it.getString(columnIndex)
+            if (it.moveToFirst()) {
+                val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                realPath = it.getString(columnIndex)
+            }
         }
         return realPath
     }
 
     private fun getImageUri(context: Context): Uri? {
-        var uri: Uri? = null
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val contentValues = ContentValues().apply {
                 put(MediaStore.MediaColumns.DISPLAY_NAME, "$timeStamp.jpeg")
                 put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
                 put(MediaStore.MediaColumns.RELATIVE_PATH, "Pictures/MyCamera/")
             }
-            uri = context.contentResolver.insert(
+            context.contentResolver.insert(
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 contentValues
             )
+        } else {
+            null
         }
-        return uri
-    }
-
-    private fun pesanError(s: String) {
-        Toast.makeText(this@AddStoryActivity, s, Toast.LENGTH_SHORT).show()
     }
 
     private fun uploadContent(poto: File) {
@@ -133,32 +144,35 @@ class AddStoryActivity : AppCompatActivity() {
     }
 
     private fun handleUpload(poto: File) {
-
         val dataDesc = bind.etDesc.text.toString()
         when {
-            dataDesc.isEmpty() -> pesanError("Masukkan deskripsi...")
-            !poto.exists() -> pesanError("Masukkan foto...")
+            dataDesc.isEmpty() -> errorMessage("Masukkan deskripsi...")
+            !poto.exists() -> errorMessage("Masukkan foto...")
             else -> {
                 val desc = dataDesc.toRequestBody("text/plain".toMediaType())
                 val photo = poto.asRequestBody("image/jpeg".toMediaTypeOrNull())
-                val imageMultipart: MultipartBody.Part
-                        = MultipartBody.Part.createFormData("photo", poto.name, photo)
+                val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("photo", poto.name, photo)
 
                 lifecycleScope.launch {
                     try {
                         addStoryModel.postStory(desc, imageMultipart)
 
-                        pesanError("Berhasil mengunggah...")
+                        errorMessage("Berhasil mengunggah...")
                         val i = Intent(this@AddStoryActivity, MainActivity::class.java)
                         i.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(i)
                         finish()
-                    } catch (e: Exception){
-                        pesanError("Gagal Mengunggah... ${e.message}")
+                    } catch (e: Exception) {
+                        errorMessage("Gagal mengunggah... ${e.message}")
+                        Log.e("AddStoryActivity", "Gagal mengunggah konten", e)
                     }
                 }
             }
         }
+    }
+
+    private fun errorMessage(s: String) {
+        Toast.makeText(this@AddStoryActivity, s, Toast.LENGTH_SHORT).show()
     }
 
     companion object {

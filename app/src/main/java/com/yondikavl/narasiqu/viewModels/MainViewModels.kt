@@ -11,7 +11,7 @@ import com.yondikavl.narasiqu.data.remote.response.ListStoryItem
 import com.yondikavl.narasiqu.data.model.UserModel
 import kotlinx.coroutines.launch
 
-class MainModels(private val repo: StoryRepository): ViewModel() {
+class MainViewModels(private val repo: StoryRepository): ViewModel() {
 
     fun getSession(): LiveData<UserModel> {
         return repo.getSession().asLiveData()

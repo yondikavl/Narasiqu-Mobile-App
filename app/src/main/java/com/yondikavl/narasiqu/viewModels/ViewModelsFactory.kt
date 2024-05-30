@@ -14,17 +14,17 @@ class ViewModelsFactory(private val repo: StoryRepository): ViewModelProvider.Ne
             modelClass.isAssignableFrom(LoginViewModels::class.java) -> {
                 LoginViewModels(repo) as T
             }
-            modelClass.isAssignableFrom(MainModels::class.java) -> {
-                MainModels(repo) as T
+            modelClass.isAssignableFrom(MainViewModels::class.java) -> {
+                MainViewModels(repo) as T
             }
-            modelClass.isAssignableFrom(DetailStoryModels::class.java) -> {
-                DetailStoryModels(repo) as T
+            modelClass.isAssignableFrom(DetailStoryViewModels::class.java) -> {
+                DetailStoryViewModels(repo) as T
             }
-            modelClass.isAssignableFrom(AddStoryModels::class.java) -> {
-                AddStoryModels(repo) as T
+            modelClass.isAssignableFrom(AddStoryViewModels::class.java) -> {
+                AddStoryViewModels(repo) as T
             }
-            modelClass.isAssignableFrom(MapStoryModels::class.java) -> {
-                MapStoryModels(repo) as T
+            modelClass.isAssignableFrom(MapStoryViewModels::class.java) -> {
+                MapStoryViewModels(repo) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel Class: " + modelClass.name)
         }

@@ -2,14 +2,12 @@ package com.yondikavl.narasiqu.data.remote.request
 
 import com.google.gson.annotations.SerializedName
 
-data class RequestRegister(
-
-	@field:SerializedName("name")
-	val name: String? = null,
+data class LoginRequest(
 
 	@field:SerializedName("email")
 	val email: String? = null,
 
 	@field:SerializedName("password")
-	val password: String? = null,
+	val password: String? = null
+
 )

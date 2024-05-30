@@ -12,8 +12,8 @@ import com.yondikavl.narasiqu.network.BaseApi
 import com.yondikavl.narasiqu.data.local.UserPreference
 import com.yondikavl.narasiqu.data.local.dataStore
 import com.yondikavl.narasiqu.databinding.ActivityRegisterBinding
-import com.yondikavl.narasiqu.data.remote.request.RequestRegister
-import com.yondikavl.narasiqu.data.remote.response.ResponseRegister
+import com.yondikavl.narasiqu.data.remote.request.RegisterRequest
+import com.yondikavl.narasiqu.data.remote.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,61 +37,61 @@ class RegisterActivity : AppCompatActivity() {
             val dataPassword = bind.etPassword.text.toString()
 
             when {
-                dataName.isEmpty() -> pesanError("Masukkan nama ...")
-                dataEmail.isEmpty() -> pesanError("Masukkan email ...")
-                dataPassword.isEmpty() -> pesanError("Masukkan password ...")
+                dataName.isEmpty() -> errorMessage("Masukkan nama ...")
+                dataEmail.isEmpty() -> errorMessage("Masukkan email ...")
+                dataPassword.isEmpty() -> errorMessage("Masukkan password ...")
                 else -> {
                     hideOrshowLoading(View.VISIBLE)
-                    disableBtn()
+                    disableButton()
                     handleRegister(dataName, dataEmail, dataPassword)
                 }
             }
         }
     }
 
-    private fun disableBtn() {
+    private fun disableButton() {
         bind.btnSignup.isEnabled = !bind.pbLoading.isVisible
         bind.btnSignup.isClickable = !bind.pbLoading.isVisible
     }
 
     private fun handleRegister(dataNama: String, dataEmail: String, dataPass: String) {
-        val dataRegister = RequestRegister(dataNama, dataEmail, dataPass)
+        val dataRegister = RegisterRequest(dataNama, dataEmail, dataPass)
         val callApi = BaseApi().getApiService(pref = UserPreference.getInstance(dataStore)).postRegister(dataRegister)
 
-        callApi.enqueue(object : Callback<ResponseRegister> {
+        callApi.enqueue(object : Callback<RegisterResponse> {
             override fun onResponse(
-                call: Call<ResponseRegister>,
-                response: Response<ResponseRegister>
+                call: Call<RegisterResponse>,
+                response: Response<RegisterResponse>
             ) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     when {
                         responseBody == null -> {
                             hideOrshowLoading(View.GONE)
-                            disableBtn()
-                            pesanError("Data masih kosong...")
+                            disableButton()
+                            errorMessage("Data masih kosong...")
                         }
                         responseBody.error == true -> {
                             hideOrshowLoading(View.GONE)
-                            disableBtn()
+                            disableButton()
                             val errorMessage = responseBody.message ?: "404 Error"
-                            pesanError("Pesan Error = $errorMessage")
+                            errorMessage("Pesan Error = $errorMessage")
                         }
                         else -> {
                             hideOrshowLoading(View.GONE)
-                            pesanError(responseBody.message!!)
+                            errorMessage(responseBody.message!!)
                             startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                             finish()
                         }
                     }
                 } else {
                     hideOrshowLoading(View.GONE)
-                    disableBtn()
-                    pesanError("Pesan Error = ${response.message()}")
+                    disableButton()
+                    errorMessage("Pesan Error = ${response.message()}")
                 }
             }
 
-            override fun onFailure(call: Call<ResponseRegister>, t: Throwable) {
+            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                 println("Error ${t.message}")
             }
         })
@@ -101,25 +101,25 @@ class RegisterActivity : AppCompatActivity() {
         bind.pbLoading.visibility = i
     }
 
-    private fun pesanError(s: String) {
+    private fun errorMessage(s: String) {
         Toast.makeText(this@RegisterActivity, s, Toast.LENGTH_SHORT).show()
     }
 
     private fun animation() {
         ObjectAnimator.ofFloat(bind.imgLogo, View.TRANSLATION_X, -30f, 30f).apply {
-            duration = 6000
+            duration = 5000
             repeatCount = ObjectAnimator.INFINITE
             repeatMode = ObjectAnimator.REVERSE
         }.start()
 
-        val tvTitle = ObjectAnimator.ofFloat(bind.tvTitle, View.ALPHA, 1f).setDuration(200)
-        val tvName = ObjectAnimator.ofFloat(bind.tvName, View.ALPHA, 1f).setDuration(200)
-        val txtInputName = ObjectAnimator.ofFloat(bind.txtInputName, View.ALPHA, 1f).setDuration(200)
-        val tvEmail = ObjectAnimator.ofFloat(bind.tvEmail, View.ALPHA, 1f).setDuration(200)
-        val txtInputEmail = ObjectAnimator.ofFloat(bind.txtInputEmail, View.ALPHA, 1f).setDuration(200)
-        val tvPassword = ObjectAnimator.ofFloat(bind.tvPassword, View.ALPHA, 1f).setDuration(200)
-        val txtInputPassword = ObjectAnimator.ofFloat(bind.txtInputPassword, View.ALPHA, 1f).setDuration(200)
-        val btnSignup = ObjectAnimator.ofFloat(bind.btnSignup, View.ALPHA, 1f).setDuration(200)
+        val tvTitle = ObjectAnimator.ofFloat(bind.tvTitle, View.ALPHA, 1f).setDuration(250)
+        val tvName = ObjectAnimator.ofFloat(bind.tvName, View.ALPHA, 1f).setDuration(250)
+        val txtInputName = ObjectAnimator.ofFloat(bind.txtInputName, View.ALPHA, 1f).setDuration(250)
+        val tvEmail = ObjectAnimator.ofFloat(bind.tvEmail, View.ALPHA, 1f).setDuration(250)
+        val txtInputEmail = ObjectAnimator.ofFloat(bind.txtInputEmail, View.ALPHA, 1f).setDuration(250)
+        val tvPassword = ObjectAnimator.ofFloat(bind.tvPassword, View.ALPHA, 1f).setDuration(250)
+        val txtInputPassword = ObjectAnimator.ofFloat(bind.txtInputPassword, View.ALPHA, 1f).setDuration(250)
+        val btnSignup = ObjectAnimator.ofFloat(bind.btnSignup, View.ALPHA, 1f).setDuration(250)
 
         AnimatorSet().apply {
             playSequentially(
@@ -132,7 +132,7 @@ class RegisterActivity : AppCompatActivity() {
                 txtInputPassword,
                 btnSignup
             )
-            startDelay = 200
+            startDelay = 250
         }.start()
     }
 }

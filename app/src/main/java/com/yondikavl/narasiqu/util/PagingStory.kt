@@ -7,7 +7,7 @@ import com.yondikavl.narasiqu.data.remote.response.ListStoryItem
 import okio.IOException
 import retrofit2.HttpException
 
-class PagingStory(private val apiServce: urlData): PagingSource<Int, ListStoryItem>(){
+class PagingStory(private val apiService: urlData): PagingSource<Int, ListStoryItem>(){
 
     override fun getRefreshKey(state: PagingState<Int, ListStoryItem>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
@@ -19,7 +19,7 @@ class PagingStory(private val apiServce: urlData): PagingSource<Int, ListStoryIt
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ListStoryItem> {
         return try {
             val pos = params.key ?: INITIAL_PAGE_INDEX
-            val data = apiServce.getAllStory(pos).listStory
+            val data = apiService.getAllStory(pos).listStory
             LoadResult.Page(
                 data = data!!,
                 prevKey = if (pos == INITIAL_PAGE_INDEX) null else pos - 1,

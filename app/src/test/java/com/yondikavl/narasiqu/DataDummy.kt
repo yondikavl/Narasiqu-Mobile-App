@@ -7,12 +7,12 @@ object DataDummy {
         val items: MutableList<ListStoryItem> = arrayListOf()
         for (i in 0..100) {
             val story = ListStoryItem(
+                "1",
                 "test",
                 "test",
                 "test",
                 "test",
-                20.0,
-                "1"
+                20.0
             )
             items.add(story)
         }

@@ -27,7 +27,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class MainModelsTest {
+class MainViewModelsTest {
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
@@ -43,7 +43,7 @@ class MainModelsTest {
         expected.value = data
         Mockito.`when`(repo.getAllStory()).thenReturn(expected)
 
-        val mainViewModel = MainModels(repo)
+        val mainViewModel = MainViewModels(repo)
         val actual: PagingData<ListStoryItem> = mainViewModel.getAllStory().getOrAwaitValue()
 
         val differ = AsyncPagingDataDiffer(
@@ -62,7 +62,7 @@ class MainModelsTest {
         expected.value = data
 
         Mockito.`when`(repo.getAllStory()).thenReturn(expected)
-        val mainViewModel = MainModels(repo)
+        val mainViewModel = MainViewModels(repo)
         val actual: PagingData<ListStoryItem> = mainViewModel.getAllStory().getOrAwaitValue()
 
         val differ = AsyncPagingDataDiffer(

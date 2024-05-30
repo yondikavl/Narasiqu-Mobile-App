@@ -9,20 +9,20 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.yondikavl.narasiqu.ui.DetailStoryActivity
-import com.yondikavl.narasiqu.databinding.ListLayoutBinding
+import com.yondikavl.narasiqu.databinding.ItemStoryBinding
 import com.yondikavl.narasiqu.data.remote.response.ListStoryItem
 import com.squareup.picasso.Picasso
 
 class PagingStoryAdapter : PagingDataAdapter<ListStoryItem, PagingStoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-    class MyViewHolder(val binding: ListLayoutBinding) : RecyclerView.ViewHolder(binding.root)
+    class MyViewHolder(val binding: ItemStoryBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val story = getItem(position)
         story?.let {
             holder.binding.apply {
-                judulStory.text = it.name
-                textStory.text = it.description
+                titleStory.text = it.name
+                descStory.text = it.description
                 Picasso.get().load(it.photoUrl).fit().into(storyPoto)
 
                 root.setOnClickListener { view ->
@@ -37,7 +37,7 @@ class PagingStoryAdapter : PagingDataAdapter<ListStoryItem, PagingStoryAdapter.M
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ListLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 

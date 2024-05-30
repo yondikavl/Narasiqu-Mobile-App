@@ -7,14 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.yondikavl.narasiqu.databinding.ActivityDetailStoryBinding
 import com.yondikavl.narasiqu.data.remote.response.Story
-import com.yondikavl.narasiqu.viewModels.DetailStoryModels
+import com.yondikavl.narasiqu.viewModels.DetailStoryViewModels
 import com.yondikavl.narasiqu.viewModels.ViewModelsFactory
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 
 class DetailStoryActivity : AppCompatActivity() {
 
-    private val detailStoryModels by viewModels<DetailStoryModels> {
+    private val detailStoryViewModels by viewModels<DetailStoryViewModels> {
         ViewModelsFactory.getInstance(this)
     }
 
@@ -37,7 +37,7 @@ class DetailStoryActivity : AppCompatActivity() {
         val dataId = intent.getStringExtra("id")
 
         if (dataId != null) {
-            detailStoryModels.getDetailStory(dataId).observe(this){
+            detailStoryViewModels.getDetailStory(dataId).observe(this){
                 fetchDataToBind(it)
             }
         }

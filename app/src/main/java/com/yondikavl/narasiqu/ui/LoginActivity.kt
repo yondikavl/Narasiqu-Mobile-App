@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.yondikavl.narasiqu.databinding.ActivityLoginBinding
-import com.yondikavl.narasiqu.data.remote.request.RequestLogin
+import com.yondikavl.narasiqu.data.remote.request.LoginRequest
 import com.yondikavl.narasiqu.viewModels.LoginViewModels
 import com.yondikavl.narasiqu.viewModels.ViewModelsFactory
 import kotlinx.coroutines.launch
@@ -37,24 +37,24 @@ class LoginActivity : AppCompatActivity() {
             val dataPassword = bind.etPassword.text.toString()
 
             when {
-                dataEmail.isEmpty() -> pesanError("Masukkan email ...")
-                dataPassword.isEmpty() -> pesanError("Masukkan password ...")
+                dataEmail.isEmpty() -> errorMessage("Masukkan email ...")
+                dataPassword.isEmpty() -> errorMessage("Masukkan password ...")
                 else -> {
                     hideOrshowLoading(true)
-                    disableBtn()
+                    disableButton()
                     getResponse(dataEmail, dataPassword)
                 }
             }
         }
     }
 
-    private fun disableBtn() {
+    private fun disableButton() {
         bind.btnLogin.isEnabled = !bind.pbLoading.isVisible
         bind.btnLogin.isClickable = !bind.pbLoading.isVisible
     }
 
     private fun getResponse(dataEmail: String, dataPass: String) {
-        val inputLogin = RequestLogin(dataEmail, dataPass)
+        val inputLogin = LoginRequest(dataEmail, dataPass)
         lifecycleScope.launch {
             try {
                 loginViewModel.postLogin(inputLogin)
@@ -64,13 +64,13 @@ class LoginActivity : AppCompatActivity() {
                         notifSuccess()
                     } else {
                         hideOrshowLoading(false)
-                        disableBtn()
+                        disableButton()
                         notifFailed()
                     }
                 }
             } catch (e: Exception) {
                 hideOrshowLoading(false)
-                disableBtn()
+                disableButton()
                 notifFailed()
             }
         }
@@ -107,7 +107,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun pesanError(s: String) {
+    private fun errorMessage(s: String) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
 
@@ -118,16 +118,16 @@ class LoginActivity : AppCompatActivity() {
             repeatMode = ObjectAnimator.REVERSE
         }.start()
 
-        val title = ObjectAnimator.ofFloat(bind.tvTitleLogin, View.ALPHA, 1f).setDuration(200)
+        val title = ObjectAnimator.ofFloat(bind.tvTitleLogin, View.ALPHA, 1f).setDuration(250)
         val tvEmailLabel =
-            ObjectAnimator.ofFloat(bind.tvEmailLabel, View.ALPHA, 1f).setDuration(200)
+            ObjectAnimator.ofFloat(bind.tvEmailLabel, View.ALPHA, 1f).setDuration(250)
         val txtInputEmail =
-            ObjectAnimator.ofFloat(bind.txtInputEmail, View.ALPHA, 1f).setDuration(200)
+            ObjectAnimator.ofFloat(bind.txtInputEmail, View.ALPHA, 1f).setDuration(250)
         val tvPasswordLabel =
-            ObjectAnimator.ofFloat(bind.tvPasswordLabel, View.ALPHA, 1f).setDuration(200)
+            ObjectAnimator.ofFloat(bind.tvPasswordLabel, View.ALPHA, 1f).setDuration(250)
         val txtInputPassword =
-            ObjectAnimator.ofFloat(bind.txtInputPassword, View.ALPHA, 1f).setDuration(200)
-        val btnLogin = ObjectAnimator.ofFloat(bind.btnLogin, View.ALPHA, 1f).setDuration(200)
+            ObjectAnimator.ofFloat(bind.txtInputPassword, View.ALPHA, 1f).setDuration(250)
+        val btnLogin = ObjectAnimator.ofFloat(bind.btnLogin, View.ALPHA, 1f).setDuration(250)
 
         AnimatorSet().apply {
             playSequentially(
@@ -138,7 +138,7 @@ class LoginActivity : AppCompatActivity() {
                 txtInputPassword,
                 btnLogin
             )
-            startDelay = 200
+            startDelay = 250
         }.start()
     }
 }

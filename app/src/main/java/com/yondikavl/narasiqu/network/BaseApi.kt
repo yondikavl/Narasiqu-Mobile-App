@@ -1,13 +1,13 @@
 package com.yondikavl.narasiqu.network
 
 import com.yondikavl.narasiqu.data.local.UserPreference
-import com.yondikavl.narasiqu.data.remote.request.RequestLogin
-import com.yondikavl.narasiqu.data.remote.request.RequestRegister
+import com.yondikavl.narasiqu.data.remote.request.LoginRequest
+import com.yondikavl.narasiqu.data.remote.request.RegisterRequest
 import com.yondikavl.narasiqu.data.remote.response.ResponseDetailStory
 import com.yondikavl.narasiqu.data.remote.response.ResponseListStory
 import com.yondikavl.narasiqu.data.remote.response.ResponseLogin
-import com.yondikavl.narasiqu.data.remote.response.ResponseRegister
-import com.yondikavl.narasiqu.data.remote.response.ResponseUploadStory
+import com.yondikavl.narasiqu.data.remote.response.RegisterResponse
+import com.yondikavl.narasiqu.data.remote.response.UploadStoryResponse
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
@@ -29,7 +29,7 @@ import retrofit2.http.Query
 
 class BaseApi {
 
-    private val urlBase: String = "https://story-api.dicoding.dev/v1/"
+    private val urlBaseApi: String = "https://story-api.dicoding.dev/v1/"
 
     fun getApiService(pref: UserPreference): urlData {
         val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -48,7 +48,7 @@ class BaseApi {
             .addInterceptor(authInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl(urlBase)
+            .baseUrl(urlBaseApi)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -59,10 +59,10 @@ class BaseApi {
 interface urlData {
 
     @POST("register")
-    fun postRegister(@Body reqRegister: RequestRegister): Call<ResponseRegister>
+    fun postRegister(@Body reqRegister: RegisterRequest): Call<RegisterResponse>
 
     @POST("login")
-    suspend fun postLogin(@Body reqLogin: RequestLogin): Response<ResponseLogin>
+    suspend fun postLogin(@Body reqLogin: LoginRequest): Response<ResponseLogin>
 
     @GET("stories")
     suspend fun getAllStory(
@@ -88,5 +88,5 @@ interface urlData {
     suspend fun postStory(
         @Part("description") desc: RequestBody,
         @Part poto: MultipartBody.Part
-    ): Response<ResponseUploadStory>
+    ): Response<UploadStoryResponse>
 }
